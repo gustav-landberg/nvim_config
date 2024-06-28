@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -239,7 +239,7 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
+  { 'revelot/kanagawa.nvim', opts = {} },
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
   --    require('gitsigns').setup({ ... })
@@ -910,3 +910,25 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+--
+--
+--
+--
+--
+-- THEME SETTINGS
+-- activate kanagawa
+vim.cmd 'colorscheme kanagawa'
+-- update kitty to reflect colorscheme
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = 'kanagawa',
+  callback = function()
+    if vim.o.background == 'light' then
+      vim.fn.system 'kitty +kitten themes Kanagawa_light'
+    elseif vim.o.background == 'dark' then
+      vim.fn.system 'kitty +kitten themes Kanagawa_dragon'
+    else
+      vim.fn.system 'kitty +kitten themes Kanagawa'
+    end
+  end,
+})
