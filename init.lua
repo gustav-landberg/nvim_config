@@ -239,8 +239,9 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-  { 'revelot/kanagawa.nvim', opts = {} },
+  { 'rebelot/kanagawa.nvim', opts = {} },
   { 'norcalli/nvim-colorizer.lua', opts = {} },
+  { 'andweeb/presence.nvim', opts = {} },
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
   --    require('gitsigns').setup({ ... })
@@ -307,6 +308,10 @@ require('lazy').setup({
   {
     'nvim-tree/nvim-tree.lua',
     opts = {},
+  },
+
+  {
+    --    'github/copilot.vim',
   },
 
   { -- Fuzzy Finder (files, lsp, etc)
@@ -747,7 +752,6 @@ require('lazy').setup({
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
           ['<C-Space>'] = cmp.mapping.complete {},
-
           -- Think of <c-l> as moving to the right of your snippet expansion.
           --  So if you have a snippet that's like:
           --  function $name($args)
@@ -938,3 +942,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     end
   end,
 })
+
+-- activate colorizer
+require('colorizer').setup()
